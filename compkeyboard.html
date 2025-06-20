@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://www.baidu.com/favicon.ico" type="image/x-icon">
+    <style>
+        /* Keyboard Container */
+        .keyboard {
+        max-width: 900px;
+        margin: 40px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Rows as Grid Containers */
+        .row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+        gap: 6px;
+        }
+
+        /* Basic Key Style */
+        .key {
+        background: #f2f2f2;
+        border: 1px solid #ccc;
+        padding: 14px;
+        text-align: center;
+        border-radius: 6px;
+        font-size: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        user-select: none;
+        position: relative;
+        overflow: hidden;
+        transition: 
+            transform 0.1s ease, 
+            box-shadow 0.1s ease, 
+            background 0.3s ease;
+        }
+
+        /* Hover Effect */
+        .key:hover {
+        background: #e4e4e4;
+        cursor: pointer;
+        }
+
+        /* Click/Press Feedback */
+        .key:active {
+        transform: scale(0.95);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Ripple Effect */
+        .key::after {
+        content: '';
+        position: absolute;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        width: 0;
+        height: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.3s ease-out, height 0.3s ease-out;
+        z-index: 0;
+        }
+
+        .key:active::after {
+        width: 150%;
+        height: 150%;
+        }
+
+        /* Width Variants */
+        .key-wide {
+        grid-column: span 2;
+        }
+        .key-wider {
+        grid-column: span 2.5;
+        }
+        .key-extra-wide {
+        grid-column: span 3;
+        }
+        .key-space {
+        grid-column: span 6;
+        }
+    </style>
+    <title>CompKeyboard</title>
+</head>
+<body>
+    <header>
+        <h1>CompKeyboard</h1>
+    </header>
+    <main>
+        <section>
+            <div class="keyboard">
+                <div class="row">
+                  <div class="key">Esc</div>
+                  <div class="key">F1</div>
+                  <div class="key">F2</div>
+                  <div class="key">F3</div>
+                  <div class="key">F4</div>
+                  <div class="key">F5</div>
+                  <div class="key">F6</div>
+                  <div class="key">F7</div>
+                  <div class="key">F8</div>
+                  <div class="key">F9</div>
+                  <div class="key">F10</div>
+                  <div class="key">F11</div>
+                  <div class="key">F12</div>
+                </div>
+              
+                <div class="row">
+                  <div class="key">~</div>
+                  <div class="key">1</div>
+                  <div class="key">2</div>
+                  <div class="key">3</div>
+                  <div class="key">4</div>
+                  <div class="key">5</div>
+                  <div class="key">6</div>
+                  <div class="key">7</div>
+                  <div class="key">8</div>
+                  <div class="key">9</div>
+                  <div class="key">0</div>
+                  <div class="key">-</div>
+                  <div class="key">=</div>
+                  <div class="key key-wide">Backspace</div>
+                </div>
+              
+                <div class="row">
+                  <div class="key key-wide">Tab</div>
+                  <div class="key">Q</div>
+                  <div class="key">W</div>
+                  <div class="key">E</div>
+                  <div class="key">R</div>
+                  <div class="key">T</div>
+                  <div class="key">Y</div>
+                  <div class="key">U</div>
+                  <div class="key">I</div>
+                  <div class="key">O</div>
+                  <div class="key">P</div>
+                  <div class="key">[</div>
+                  <div class="key">]</div>
+                  <div class="key">\</div>
+                </div>
+              
+                <div class="row">
+                  <div class="key key-wider">Caps Lock</div>
+                  <div class="key">A</div>
+                  <div class="key">S</div>
+                  <div class="key">D</div>
+                  <div class="key">F</div>
+                  <div class="key">G</div>
+                  <div class="key">H</div>
+                  <div class="key">J</div>
+                  <div class="key">K</div>
+                  <div class="key">L</div>
+                  <div class="key">;</div>
+                  <div class="key">'</div>
+                  <div class="key key-wider">Enter</div>
+                </div>
+              
+                <div class="row">
+                  <div class="key key-extra-wide">Shift</div>
+                  <div class="key">Z</div>
+                  <div class="key">X</div>
+                  <div class="key">C</div>
+                  <div class="key">V</div>
+                  <div class="key">B</div>
+                  <div class="key">N</div>
+                  <div class="key">M</div>
+                  <div class="key">,</div>
+                  <div class="key">.</div>
+                  <div class="key">/</div>
+                  <div class="key key-extra-wide">Shift</div>
+                </div>
+              
+                <div class="row">
+                  <div class="key key-wide">Ctrl</div>
+                  <div class="key key-wide">Alt</div>
+                  <div class="key key-space">Space</div>
+                  <div class="key key-wide">Alt</div>
+                  <div class="key key-wide">Ctrl</div>
+                </div>
+              </div>
+                
+        </section>
+    </main>
+</body>
+</html>
