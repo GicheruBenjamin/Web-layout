@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            }
+
+            .canvas {
+            width: 90vw;
+            height: 90vh;
+            display: grid;
+            place-items: center;
+            }
+
+            .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            position: relative;
+            }
+
+            /* Abstract Blobs and Orbs */
+
+            .blob {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, #f06, #0ff);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: blobMove 8s infinite ease-in-out;
+            }
+
+            @keyframes blobMove {
+            0%, 100% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+                transform: translate(0, 0);
+            }
+            50% {
+                border-radius: 40% 60% 70% 30% / 50% 70% 30% 60%;
+                transform: translate(20px, -10px);
+            }
+            }
+
+            .orb {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #fff, #888);
+            border-radius: 50%;
+            animation: float 4s ease-in-out infinite alternate;
+            }
+
+            @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
+            }
+
+            .triangle {
+            width: 0;
+            height: 0;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 100px solid #4ef;
+            animation: spin 6s linear infinite;
+            }
+
+            @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+            }
+
+            .bar {
+            width: 160px;
+            height: 20px;
+            background: #fa4;
+            transform: rotate(45deg);
+            position: relative;
+            animation: slideBar 3s ease-in-out infinite alternate;
+            }
+
+            @keyframes slideBar {
+            from { transform: rotate(45deg) translateX(-10px); }
+            to   { transform: rotate(45deg) translateX(10px); }
+            }
+
+            .ripple {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            border: 2px solid #0ff;
+            border-radius: 50%;
+            animation: ripplePulse 2s ease-out infinite;
+            }
+
+            @keyframes ripplePulse {
+            0% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) scale(2);
+            }
+            }
+
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="canvas">
+        <div class="grid">
+          <div class="blob"></div>
+          <div class="orb"></div>
+          <div class="triangle"></div>
+          <div class="bar"></div>
+          <div class="ripple"></div>
+        </div>
+      </div>
+      
+</body>
+</html>

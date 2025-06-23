@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>CSS Scroll Animation Demo</title>
+  <style>
+    /* ───────────────────────────────────────────────────────────────── */
+    /* 1) Setup scroll container with snap */
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      background: #111;
+      font-family: sans-serif;
+      color: white;
+    }
+    section {
+      scroll-snap-align: start;
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+    }
+
+    /* ───────────────────────────────────────────────────────────────── */
+    /* 2) Section backgrounds */
+    section:nth-of-type(1) { background: #1a1a1a; }
+    section:nth-of-type(2) { background: #222; }
+    section:nth-of-type(3) { background: #2a2a2a; }
+
+    /* ───────────────────────────────────────────────────────────────── */
+    /* 3) Scroll-linked animation: expands the dot as you scroll down */
+    @scroll-timelinescroll-expand {
+      source: auto;
+      orientation: block;
+      scroll-offsets: start 0%, end 100%;
+    }
+
+    .dot {
+      width: 50px; height: 50px;
+      background: radial-gradient(circle, #0ff, #008);
+      border-radius: 50%;
+      /* bind animation to scroll */
+      animation: expand 1s linear both;
+      animation-timeline: scroll-expand;
+    }
+
+    @keyframes expand {
+      from { transform: scale(1); }
+      to   { transform: scale(4); }
+    }
+
+    /* ───────────────────────────────────────────────────────────────── */
+    /* 4) A sticky header that fades in/out via transition */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      padding: 1rem;
+      text-align: center;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      transition: background 0.4s ease, transform 0.4s ease;
+    }
+    body:has(section:nth-of-type(2):target) .sticky-header {
+      background: rgba(16,16,48,0.8);
+      transform: translateY(-10%);
+    }
+
+    /* ───────────────────────────────────────────────────────────────── */
+    /* 5) Flex cards that grow on hover */
+    .card-container {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .card {
+      flex: 1 1 200px;
+      min-width: 150px;
+      height: 150px;
+      background: #0a0a30;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      transition: flex 0.4s ease, background 0.3s ease;
+    }
+    .card:hover {
+      flex: 2 1 200px;
+      background: #1030a0;
+    }
+
+    /* ───────────────────────────────────────────────────────────────── */
+    /* 6) Decorative bars that slide in via position & transition */
+    .bars {
+      position: relative;
+      width: 100%;
+      height: 4px;
+      background: #444;
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+    .bars::before,
+    .bars::after {
+      content: '';
+      position: absolute;
+      height: 4px;
+      width: 100%;
+      background: #0ff;
+      transform: translateX(-100%);
+      transition: transform 0.6s ease-out;
+    }
+    section:target .bars::before {
+      transform: translateX(0);
+    }
+    section:target .bars::after {
+      transform: translateX(100%);
+    }
+
+    /* ───────────────────────────────────────────────────────────────── */
+    /* Utility: make each section an anchor target */
+    section { scroll-margin-top: 4rem; }
+    section[id] { outline: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky header (changes when section 2 is targeted via URL #section2) -->
+  <div class="sticky-header">Pure-CSS Scroll Animation Demo</div>
+
+  <!-- Section 1: scroll-linked expanding dot -->
+  <section id="section1">
+    <div class="dot"></div>
+    <div class="bars"></div>
+  </section>
+
+  <!-- Section 2: flex cards that grow on hover -->
+  <section id="section2">
+    <div class="card-container">
+      <div class="card">Card A</div>
+      <div class="card">Card B</div>
+      <div class="card">Card C</div>
+    </div>
+    <div class="bars"></div>
+  </section>
+
+  <!-- Section 3: repositioned triangle with floating animation -->
+  <section id="section3">
+    <div style="position: absolute; top: 10%; left: 10%;">
+      <div class="triangle" style="
+        width: 0; height: 0;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-bottom: 80px solid #fa4;
+        animation: spin 8s linear infinite;
+      "></div>
+    </div>
+    <div class="bars"></div>
+  </section>
+
+  <script>
+    // polyfill :has() for Chrome if needed; otherwise remove that rule
+  </script>
+</body>
+</html>
