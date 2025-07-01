@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Common variables */
+:root {
+  --primary-color: #4f46e5;
+  --accent-color: #ec4899;
+  --card-bg: #fff;
+  --text-color: #333;
+  --circle-color: #a5b4fc;
+}
+
+/* Body basics */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9fafb;
+  color: var(--text-color);
+  margin: 0;
+  padding: 2rem;
+  display: grid;
+  gap: 2rem;
+}
+
+/* HERO: Circles */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.circle {
+  border-radius: 50%;
+  background: var(--circle-color);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  flex-shrink: 0;
+}
+
+.large {
+  width: clamp(100px, 20vw, 150px);
+  height: clamp(100px, 20vw, 150px);
+}
+
+.medium {
+  width: clamp(70px, 15vw, 100px);
+  height: clamp(70px, 15vw, 100px);
+}
+
+.small {
+  width: clamp(50px, 10vw, 70px);
+  height: clamp(50px, 10vw, 70px);
+}
+
+/* CARDS: Grid layout */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+/* RIBBON: Diagonal shape with clip-path */
+.ribbon {
+  background: var(--accent-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="hero">
+        <div class="circle large"></div>
+        <div class="circle medium"></div>
+        <div class="circle small"></div>
+      </div>
+      
+      <div class="cards">
+        <div class="card">Card 1</div>
+        <div class="card">Card 2</div>
+        <div class="card">Card 3</div>
+      </div>
+      
+      <div class="ribbon">Special Offer</div>
+      
+</body>
+</html>
