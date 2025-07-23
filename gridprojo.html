@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root{
+            --color-brightyellow: #ffe202;
+            --color-brightgreen: #00ff00;
+            --color-brightblue: #00b0ff;
+            --color-brightpurple: #b200ff;
+        }
+        body{
+            box-sizing: border-box;
+            margin: 0; padding: 0;   
+        }
+        .box1{
+            background-color: var(--color-brightyellow);
+        }
+        .box2{
+            background-color: var(--color-brightgreen);
+        }
+        .box3{
+            background-color: var(--color-brightblue);
+        }
+        header{
+            background-color: black;
+            color: white;
+            font-size: 2rem;
+            padding: 1rem;
+            text-align: center;
+        }
+        main{
+            display:flex;
+            flex-direction: row;
+        }
+        section{
+            background-color:darkkhaki;
+            padding: 1rem;
+        }
+    </style>
+    <title>Grid Project</title>
+</head>
+<body>
+    <header>Grid Project</header>
+    <main>
+        <section class="grid-row">
+            <h3>Section 1</h3>
+            <p>3 sections arranged as rows</p>
+            <div class="container">
+                <div class="box1"></div>
+                <div class="box2"></div>
+                <div class="box3"></div>
+            </div>
+            </div>
+        </section>
+        <section class="grid-column">
+            <h3>Section 2</h3>
+            <p>3 sections arranged as columns</p>
+            <div class="container">
+                <div class="box1"></div>
+                <div class="box2"></div>
+                <div class="box3"></div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
