@@ -14,15 +14,6 @@
             box-sizing: border-box;
             margin: 0; padding: 0;   
         }
-        .box1{
-            background-color: var(--color-brightyellow);
-        }
-        .box2{
-            background-color: var(--color-brightgreen);
-        }
-        .box3{
-            background-color: var(--color-brightblue);
-        }
         header{
             background-color: black;
             color: white;
@@ -32,11 +23,40 @@
         }
         main{
             display:flex;
-            flex-direction: row;
+            flex-direction: column;
         }
         section{
             background-color:darkkhaki;
             padding: 1rem;
+        }
+        .box1{
+            background-color: var(--color-brightyellow);
+        }
+        .box2{
+            background-color: var(--color-brightgreen);
+        }
+        .box3{
+            background-color: var(--color-brightblue);
+        }
+        .grid-row .container{
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+            row-gap: max(10px, 1vw);
+        }
+        .grid-row .container > div{
+            height: 100px;
+            width: 100px;
+            border: 2px solid black;
+        }
+        .grid-column .container{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: max(10px, 1vw);
+        }
+        .grid-column .container > div{
+            height: 100px;
+            width: 100px;
+            border: 2px solid black;
         }
     </style>
     <title>Grid Project</title>
